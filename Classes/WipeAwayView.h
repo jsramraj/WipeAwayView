@@ -7,6 +7,12 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol WipeAwayViewDelegate <NSObject>
+@optional
+- (void)wipeAwayViewDidCleanWithPercentage:(float)percentage;
+
+@end
+
 @interface WipeAwayView : UIView {
 
 	CGPoint		location;
@@ -17,6 +23,9 @@
 	CGFloat		eraseSpeed;
 	
 }
+
+@property(nonatomic, assign) id<WipeAwayViewDelegate> delegate;
+
 
 - (void)newMaskWithColor:(UIColor *)color eraseSpeed:(CGFloat)speed;
 

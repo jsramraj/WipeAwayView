@@ -8,6 +8,10 @@
 #import "WipeAwayDemoViewController.h"
 #import "WipeAwayView.h"
 
+@interface WipeAwayDemoViewController () <WipeAwayViewDelegate>
+
+@end
+
 @implementation WipeAwayDemoViewController
 
 // The designated initializer.  Override if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.
@@ -25,9 +29,9 @@
     [super viewDidLoad];
 	
 	WipeAwayView *mask = [[WipeAwayView alloc] initWithFrame:CGRectMake(0,0,320,480)];
-	[mask newMaskWithColor:[UIColor redColor] eraseSpeed:0.25]; 
+    [mask newMaskWithColor:[UIColor colorWithRed:0 green:0 blue:0 alpha:0.95] eraseSpeed:1];
 	[self.view addSubview:mask];
-	
+    [mask setDelegate:self];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -43,7 +47,11 @@
     // e.g. self.myOutlet = nil;
 }
 
+#pragma mark - WipeAwayDelegate
 
-
+-(void)wipeAwayViewDidCleanWithPercentage:(float)percentage{
+    NSLog(@"%1.2f", percentage);
+    [percentageLabel setText:[NSString stringWithFormat:@"%1.2f %%", percentage]];
+}
 
 @end

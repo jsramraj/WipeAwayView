@@ -34,6 +34,24 @@
 	
 }
 
+- (void)findAverageColor {
+    //Get the RGBA value from the current image ref.
+    CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
+    unsigned char rgba[4];
+    CGContextRef context = CGBitmapContextCreate(rgba, 1, 1, 8, 4, colorSpace, kCGImageAlphaPremultipliedLast | kCGBitmapByteOrder32Big);
+    CGContextDrawImage(context, CGRectMake(0, 0, 1, 1), imageRef);
+    
+    //Release memory
+    CGColorSpaceRelease(colorSpace);
+    CGContextRelease(context);
+    
+    //In order to find the current wiped percentage, we can use the average alpha of the image. If the alpha is 0, the view is fully wiped. The actual alpha values ranges from 0 to 255.
+    if (_delegate && [_delegate respondsToSelector:@selector(wipeAwayViewDidCleanWithPercentage:)]) {
+        [_delegate wipeAwayViewDidCleanWithPercentage:100 - ((CGFloat)rgba[3] / 255 * 100)];
+    }
+    
+}
+
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
 
 	wipingInProgress = YES;
@@ -53,6 +71,8 @@
 }
 
 - (void)drawRect:(CGRect)rect {
+
+    [self findAverageColor];
 
 	CGContextRef context = UIGraphicsGetCurrentContext();
 

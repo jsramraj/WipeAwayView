@@ -10,6 +10,7 @@
 
 @interface WipeAwayDemoViewController : UIViewController {
 
+    IBOutlet UILabel *percentageLabel;
 }
 
 @end

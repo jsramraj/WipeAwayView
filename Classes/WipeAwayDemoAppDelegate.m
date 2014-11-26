@@ -6,7 +6,6 @@
 //
 
 #import "WipeAwayDemoAppDelegate.h"
-#import "WipeAwayDemoViewController.h"
 
 @implementation WipeAwayDemoAppDelegate
 
@@ -18,7 +17,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {    
     
-	WipeAwayDemoViewController *main = [[WipeAwayDemoViewController alloc] init];
+	main = [[WipeAwayDemoViewController alloc] init];
 	[self.window addSubview:[main view]];
 	
     [self.window makeKeyAndVisible];
