@@ -20,7 +20,6 @@
     
 	WipeAwayDemoViewController *main = [[WipeAwayDemoViewController alloc] init];
 	[self.window addSubview:[main view]];
-	[main release];
 	
     [self.window makeKeyAndVisible];
     
@@ -76,10 +75,6 @@
 }
 
 
-- (void)dealloc {
-    [window release];
-    [super dealloc];
-}
 
 
 @end

@@ -28,8 +28,6 @@
 	
 	eraseSpeed = speed;
 	
-	[color retain];
-	[maskColor release];
 	maskColor = color;
 	
 	[self setNeedsDisplay];
@@ -84,11 +82,6 @@
 	
 }
 
-- (void)dealloc {
-	[maskColor release];
-	[eraser release];
-    [super dealloc];
-}
 
 
 @end

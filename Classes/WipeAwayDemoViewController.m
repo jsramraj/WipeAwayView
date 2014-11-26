@@ -27,7 +27,6 @@
 	WipeAwayView *mask = [[WipeAwayView alloc] initWithFrame:CGRectMake(0,0,320,480)];
 	[mask newMaskWithColor:[UIColor redColor] eraseSpeed:0.25]; 
 	[self.view addSubview:mask];
-	[mask release];
 	
 }
 
@@ -45,9 +44,6 @@
 }
 
 
-- (void)dealloc {
-    [super dealloc];
-}
 
 
 @end
